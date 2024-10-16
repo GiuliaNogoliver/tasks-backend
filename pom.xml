@@ -17,11 +17,11 @@
 	<description>A very simple task management tool</description>
 
 	<properties>
-    	<java.version>1.8</java.version>
-    	<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-    	<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<java.version>1.8</java.version>
+		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
 	</properties>
-
 
 	<dependencies>
 		<dependency>
@@ -66,18 +66,16 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.5</version>
+				<version>0.8.3</version>
 				<executions>
 					<execution>
-						<id>report</id>
-						<phase>test</phase>
 						<goals>
-							<goal>report</goal>
+							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
-					<outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
+					<destFile>${sonar.jacoco.reportPath}</destFile>
 				</configuration>
 			</plugin>
 		</plugins>
