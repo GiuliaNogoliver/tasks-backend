@@ -52,14 +52,17 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<version>4.13.1</version> <!-- Ou uma versão mais recente -->
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>4.0.0</version>
 			<scope>test</scope>
 		</dependency>
+		
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -87,6 +90,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<!-- Plugin Jacoco para cobertura de código -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -102,7 +107,20 @@
 					<destFile>${sonar.jacoco.reportPath}</destFile>
 				</configuration>
 			</plugin>
+			
+			<!-- Plugin Surefire para rodar os testes -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M7</version> <!-- Versão do Surefire -->
+				<configuration>
+					<!-- <testFailureIgnore>false</testFailureIgnore> -->
+					<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+				</configuration>
+			</plugin>
+			
 		</plugins>
 	</build>
+	
 
 </project>
