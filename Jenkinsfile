@@ -77,8 +77,20 @@ pipeline {
 
         stage('Deploy Prod'){
             steps {
-                bat 'docker-compose build'
-                bat 'docker-compose up -d'
+                bat 'mvn clean install'
+            }
+            // steps {
+            //     bat 'docker-compose build'
+            //     bat 'docker-compose up -d'
+            // }
+        }
+
+        stage('Health Check'){
+            steps {
+                dir('funcional-test') {
+                    sleep(2)
+                    bat 'mvn verify -DskipTests'
+                }
             }
         }
     }
