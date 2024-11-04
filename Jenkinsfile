@@ -61,8 +61,8 @@ pipeline {
         stage('Deploy Front'){
             steps {
                 git credentialsId: 'github_login', url: 'https://github.com/GiuliaNogoliver/tasks-frontend'
-                bat 'mvn clean package'
-                deploy adapters: [tomcat9(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-frontend', war: 'target/tasks-frontend.war'
+                    bat 'mvn clean package'
+                    deploy adapters: [tomcat9(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-frontend', war: 'target/tasks-frontend.war'
             }
         }
     }
