@@ -77,7 +77,7 @@ pipeline {
 
         stage('Deploy Prod'){
             steps {
-                bat 'mvn clean install'
+                bat 'mvn clean install test'
             }
             // steps {
             //     bat 'docker-compose build'
