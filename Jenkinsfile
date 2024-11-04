@@ -65,6 +65,14 @@ pipeline {
                     deploy adapters: [tomcat9(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-frontend', war: 'target/tasks.war'
             }
         }
+
+        stage('Functional Test Automation'){
+            steps {
+                dir('funcional-test') {
+                    git branch: 'main', credentialsId: 'github_login', url: 'https://github.com/GiuliaNogoliver/tasks-funcional-tests'
+                    bat 'mvn test'
+                }
+            }
+        }
     }
 }
-
