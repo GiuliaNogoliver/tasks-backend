@@ -96,7 +96,7 @@ pipeline {
     }
     post {
         always {
-            junit allowEmptyResults: true, stdioRetention: '', testResults: 'target/surefire-reports/*.xml'
+            junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
         }
     }
 }
